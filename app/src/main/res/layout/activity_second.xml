@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#002521"
+    android:layout_height="match_parent"
+    android:paddingTop="3dp"
+    android:paddingStart="3dp"
+    android:paddingEnd="3dp"
+    tools:context=".SecondActivity"
+    >
+
+    <TextView
+        android:id="@+id/out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_stroke_green"
+        android:text=" СОХРАНЕННЫЕ БИЛЕТЫ:"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:background="@drawable/back_stroke_green"
+        android:onClick="onClick"
+        android:text="Очистить список сохраненных" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:fillViewport="true"
+        android:focusable="true">
+
+        <ListView
+            android:id="@+id/ListWithTickets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/back_stroke_green"
+            android:divider="@color/blackdivider"
+            android:dividerHeight="@dimen/twodp"
+            android:focusable="true"
+            android:paddingStart="5dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="5dp"
+            android:textAlignment="center"></ListView>
+
+    </ScrollView>
+
+</LinearLayout>
