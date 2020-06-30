@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class TicketFounded {
@@ -13,13 +15,24 @@ public class TicketFounded {
     private static String fromSTROKA;
     private static String toSTROKA;
     private static String currency="rub";
-    private static String toDATE;
     private static String fromDATE;
     private static String gate;
     private static Double value;
     private static Double wantvalue;
     private static Integer range=0;
     static DBHelper dbHelper=MainActivity.dbHelper;
+
+    public static String tostring() {
+        StringBuilder result= new StringBuilder();
+        return result
+                .append(getFromSTROKA().split(" ")[1]).append(" --> ")
+                .append(getToSTROKA().split(" ")[1]).append("\n")
+                .append(getFromDATE()).append("  in  ")
+                .append(getGate()).append("\n")
+                .append(Math.round(getValue())).append(" руб ( Желаемая: ")
+                .append(Math.round(getWantvalue())+" )")
+                .toString();
+    }
 
     public static void toBase() {
         SQLiteDatabase database= dbHelper.getWritableDatabase();
@@ -32,6 +45,7 @@ public class TicketFounded {
         contentValues.put(DBHelper.KEY_WANTPRICE, getWantvalue());
         database.insert(DBHelper.TABLE_TICKETS, null, contentValues);
     }
+
 
     public static void setFromIATA(String iata){
         fromIATA=iata;
@@ -77,14 +91,6 @@ public class TicketFounded {
 
     public static String getCurrency(){ return currency; }
 
-    public static void setToDATE(String date){toDATE=date;
-        Log.d(TAG,"setToDATE="+date);
-    }
-
-    public static String getToDATE(){
-        Log.d(TAG,"getToDATE="+toDATE);
-        return toDATE;
-    }
 
     public static void setFromDATE(String date){ fromDATE=date; }
 

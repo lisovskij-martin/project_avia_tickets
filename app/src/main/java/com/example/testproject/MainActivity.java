@@ -3,10 +3,13 @@ package com.example.testproject;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -24,6 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -43,8 +47,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static android.text.InputType.TYPE_CLASS_NUMBER;
+import static com.example.testproject.R.style.AppTheme_DialogTheme;
 import static com.example.testproject.WorkWithDate.setInitialDateTime;
 import static com.example.testproject.WorkWithDate.d;
+import com.example.testproject.SecondActivity;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -55,11 +61,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static DBHelper dbHelper;
     static TextView dateinput, nearestAirport;
     EditText cityInput1, cityInput2;
-    TextView from,to,date,gate,value, wantvalue;
+    TextView txtTicketOut, wantvalue;
     Button save,goToSpisok;
     ListView listCity1, listCity2;
     ImageButton imgbtn1, imgbtn2;
-    LinearLayout ticketOut;
+
+    SharedPreferences mSettings;
+    public static final String PREFERENCES_LOGIN = "LOGIN";
+    public static final String PREFERENCES_PASSWORD = "PASSWORD";
+    public static final String PREFERENCES_FILE = "mysettings";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                     Log.d(TAG, "beforeTextChanged1:" + s);
                 }
 
@@ -87,6 +96,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     Log.d(TAG, "onTextChanged1:" + s);
                     if (s.length()!=0 && !CityFrom) this.getCityFrom(s.toString());
+                    //findViewById(R.id.LLcity2).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.ListCity2).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.LL_Nearest_Date_WantValue).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.LLticketButtons).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.LLticketOut).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.LLcity1).setBackgroundResource(R.drawable.back_ll_blue);
+                    findViewById(R.id.Cross1).setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -130,6 +146,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     adapter.clear();
                                     cityInput1.setEnabled(false);
                                     cityInput1.setTextSize(18);
+                                    //findViewById(R.id.LLcity2).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.ListCity2).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.LL_Nearest_Date_WantValue).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.LLticketButtons).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.LLcities).setBackgroundResource(R.drawable.back_ll_blue);
+                                    findViewById(R.id.LLcity1).setBackgroundResource(R.drawable.buttons_blue_a40);
+                                    findViewById(R.id.Cross2).setVisibility(View.VISIBLE);
+                                    //findViewById(R.id.LLticketOut).setVisibility(View.VISIBLE);
                                 }
                             });
                         }
@@ -148,8 +172,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                     Log.d(TAG, "beforeTextChanged2:" + s);
+                    //findViewById(R.id.LLcity1).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.LL_Nearest_Date_WantValue).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.LLticketButtons).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.LLticketOut).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.ListCity1).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.LLcity2).setBackgroundResource(R.drawable.back_ll_blue);
+                    findViewById(R.id.Cross2).setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -194,6 +224,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     adapter2.clear();
                                     cityInput2.setEnabled(false);
                                     cityInput2.setTextSize(18);
+                                    findViewById(R.id.LLcity1).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.ListCity1).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.LL_Nearest_Date_WantValue).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.LLticketButtons).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.LLcity2).setBackgroundResource(R.drawable.buttons_blue_a40);
+                                    //findViewById(R.id.LLticketOut).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.Cross1).setVisibility(View.VISIBLE);
                                 }
                             });
                         }
@@ -253,12 +290,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgbtn2=findViewById(R.id.Cross2);
         dateinput=findViewById(R.id.DateInput);
         nearestAirport=findViewById(R.id.NearestAirport);
-        from=findViewById(R.id.strokaFrom);
-        to=findViewById(R.id.strokaTo);
-        date=findViewById(R.id.dateFrom);
-        gate=findViewById(R.id.gate);
-        value=findViewById(R.id.value);
-        ticketOut=findViewById(R.id.ticketout);
+        txtTicketOut=findViewById(R.id.txtTicketOut);
         save=findViewById(R.id.save);
         goToSpisok=findViewById(R.id.goToSpisok);
         wantvalue=findViewById(R.id.wantval);
@@ -266,6 +298,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void setInitialValue(){
         showTicketOut(false);
+        mSettings = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         dateAndTime=Calendar.getInstance();
     }
 
@@ -275,17 +308,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             CityFrom=false;
             showTicketOut(false);
             Log.d(TAG, "Click Cross1");
+            cityInput2.setEnabled(false);
             cityInput1.setEnabled(true);
             cityInput1.setText("");
             listCity1.setAdapter(null);
+            findViewById(R.id.Cross2).setVisibility(View.INVISIBLE);
         }
         if (view.getId()==findViewById(R.id.Cross2).getId()){
             CityTo=false;
             showTicketOut(false);
             Log.d(TAG, "Click Cross2");
+            cityInput1.setEnabled(false);
             cityInput2.setEnabled(true);
             cityInput2.setText("");
             listCity2.setAdapter(null);
+            findViewById(R.id.Cross1).setVisibility(View.INVISIBLE);
         }
         if (view.getId()==findViewById(R.id.btnDataChooser).getId()){
             showTicketOut(false);
@@ -308,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             TicketFounded.setFromIATA(fromIATA);
             TicketFounded.setFromDATE(dateFROM);
             TicketFounded.setWantvalue(Double.parseDouble(wantVal));
-            SearchTickets();
+            searchTickets();
             }
             if(!AllFieldsAreSet()){
                 Log.d(TAG, "Не все поля введены");
@@ -330,7 +367,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             cityInput2.setTextSize(18);
         }
         if(view.getId()==findViewById(R.id.btnFromHere).getId()&& !nearestAirport.getText().toString().equals("nearest airport")){
-            Log.d(TAG, "click to here");
+            Log.d(TAG, "click from here");
             CityFrom=true;
             cityInput1.setText(nearestAirport.getText());
             fromIATA=nearestAirport.getText().toString().split(" ")[0];
@@ -348,9 +385,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view.getId()==findViewById(R.id.btnWantVal).getId()){
             dialog();
         }
+        if(view.getId()==findViewById(R.id.LL_log_out).getId()){
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.remove(PREFERENCES_LOGIN);
+            editor.remove(PREFERENCES_PASSWORD);
+            editor.apply();
+            Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
+            startActivity(intent);
+        }
     }
 
-    public void SearchTickets(){
+    public void searchTickets(){
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("https://lyssa.aviasales.ru/")
                 .addConverterFactory(GsonConverterFactory.create());
@@ -366,14 +411,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 TicketFounded.setValue(response.body().getPrices().get(0).getValue());
                 TicketFounded.setGate(response.body().getPrices().get(0).getGate());
                 TicketFounded.setWantvalue(Double.parseDouble(wantVal));
-                from.setText(TicketFounded.getFromSTROKA());
-                to.setText(TicketFounded.getToSTROKA());
-                date.setText(TicketFounded.getFromDATE());
-                gate.setText(TicketFounded.getGate());
-                value.setText(new StringBuilder().append(TicketFounded.getValue()).append(" ")
-                        .append(TicketFounded.getCurrency()).append("\n")
-                        .append(TicketFounded.getWantvalue().toString()).append(" ")
-                        .append(TicketFounded.getCurrency()).toString());
+                txtTicketOut.setText(TicketFounded.tostring());
                 showTicketOut(true);
                 }
                 else{Toast toast = Toast.makeText(getApplicationContext(), "Билетов не найдено!", Toast.LENGTH_SHORT);
@@ -397,18 +435,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void showTicketOut(boolean show){
         if (show){
-            from.setVisibility(View.VISIBLE);
-            to.setVisibility(View.VISIBLE);
-            date.setVisibility(View.VISIBLE);
-            gate.setVisibility(View.VISIBLE);
-            value.setVisibility(View.VISIBLE);
+            findViewById(R.id.LLticketOut).setVisibility(View.VISIBLE);
+//            from.setVisibility(View.VISIBLE);
+//            to.setVisibility(View.VISIBLE);
+//            date.setVisibility(View.VISIBLE);
+//            gate.setVisibility(View.VISIBLE);
+//            value.setVisibility(View.VISIBLE);
             save.setVisibility(View.VISIBLE);
         } else {
-            from.setVisibility(View.GONE);
-            to.setVisibility(View.GONE);
-            date.setVisibility(View.GONE);
-            gate.setVisibility(View.GONE);
-            value.setVisibility(View.GONE);
+            findViewById(R.id.LLticketOut).setVisibility(View.INVISIBLE);
+//            from.setVisibility(View.GONE);
+//            to.setVisibility(View.GONE);
+//            date.setVisibility(View.GONE);
+//            gate.setVisibility(View.GONE);
+//            value.setVisibility(View.GONE);
             save.setVisibility(View.GONE);
         }
     }

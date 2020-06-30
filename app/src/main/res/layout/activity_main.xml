@@ -4,34 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#042325"
+    android:background="#cef6fe"
     tools:context=".MainActivity"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/LLcities"
         android:layout_marginStart="7dp"
         android:layout_marginEnd="7dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/back_ll_blue"
         android:layout_marginTop="10dp"
-        android:background="@drawable/back_stroke_green"
+        android:orientation="vertical">
+
+        <LinearLayout
+        android:id="@+id/LLcity1"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:background="@drawable/buttons_blue_a40"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/CityInput1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
             android:layout_marginStart="4dp"
-            android:backgroundTint="@color/blackdivider"
+            android:layout_weight="20"
             android:hint="Откуда?"
-            android:lines="1"/>
+            android:inputType="text"
+            android:lines="1"
+            android:text=""
+            android:textColor="@color/blackdivider"
+            android:textColorHint="#CC031F80"
+            app:met_baseColor="#001027"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#016CE6" />
 
         <ImageButton
             android:id="@+id/Cross1"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:background="@android:color/transparent"
             android:clickable="true"
             android:onClick="onClick"
@@ -39,71 +57,92 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/ListCity1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        android:background="@android:color/transparent"
-        android:textAlignment="center"></ListView>
+            <ListView
+            android:id="@+id/ListCity1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginTop="3dp"
+            android:background="@android:color/transparent"
+            android:divider="@android:drawable/list_selector_background"
+            android:dividerHeight="3dp"
+            android:textAlignment="center" />
 
-    <LinearLayout
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
+        <LinearLayout
+        android:id="@+id/LLcity2"
+        android:layout_marginHorizontal="7dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/buttons_blue_a40"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/back_stroke_green"
         android:orientation="horizontal">
 
-        <EditText
+          <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/CityInput2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
             android:layout_marginStart="4dp"
-            android:backgroundTint="@color/blackdivider"
+            android:layout_weight="20"
             android:hint="Куда?"
-            android:lines="1" />
+            android:inputType="text"
+            android:lines="1"
+            android:text=""
+            android:textColor="@color/blackdivider"
+            android:textColorHint="#CC031F80"
+            app:met_baseColor="#001027"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#016CE6"/>
 
-        <ImageButton
+           <ImageButton
             android:id="@+id/Cross2"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
+               android:layout_gravity="center_vertical"
             android:background="@android:color/transparent"
             android:onClick="onClick"
             app:srcCompat="@android:drawable/btn_dialog" />
 
+        </LinearLayout>
+
+            <ListView
+            android:id="@+id/ListCity2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:background="@android:color/transparent"
+            android:divider="@android:drawable/list_selector_background"
+            android:dividerHeight="3dp"
+            android:textAlignment="center" />
+
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/ListCity2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        android:background="@android:color/transparent"
-        android:divider="@color/blackdivider"
-        android:dividerHeight="@dimen/twodp"
-        android:textAlignment="center"></ListView>
-
     <LinearLayout
-        android:id="@+id/show"
+        android:id="@+id/LL_Nearest_Date_WantValue"
         android:layout_marginStart="7dp"
         android:layout_marginEnd="7dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/back_stroke_green"
+        android:background="@drawable/back_ll_blue"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/GPS_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_sans_bold"
             android:gravity="center"
             android:text="Ближайший к вам аэропорт:"
             android:textSize="18sp" />
@@ -125,8 +164,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:orientation="horizontal">
@@ -135,12 +172,12 @@
                 android:id="@+id/btnFromHere"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                android:background="@drawable/back_stroke_green"
+                android:background="@drawable/buttons_blue_a40"
+                android:fontFamily="sans-serif"
                 android:onClick="onClick"
                 android:text="Отсюда?" />
 
@@ -148,36 +185,40 @@
                 android:id="@+id/btnToHere"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
+
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                android:background="@drawable/back_stroke_green"
+                android:background="@drawable/buttons_blue_a40"
+                android:fontFamily="sans-serif"
                 android:onClick="onClick"
                 android:text="Сюда?" />
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginEnd="7dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:background="@drawable/back_stroke_green"
+            android:background="@drawable/buttons_blue_a40"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/Date_sign"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/josefin_sans_bold"
                 android:gravity="center"
                 android:text="Дата вылета:"
                 android:textSize="18sp" />
@@ -193,6 +234,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="4dp"
                     android:layout_weight="20"
+                    android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:hint="Дата"
                     android:text="00-00-00"
@@ -215,14 +257,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/back_stroke_green"
             android:layout_marginStart="5dp"
+            android:background="@drawable/buttons_blue_a40"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/WantValSign"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/josefin_sans_bold"
                 android:gravity="center"
                 android:text="Желаемая цена:"
                 android:textSize="18sp" />
@@ -239,6 +282,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_weight="20"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:hint="Цена"
                     android:text="0000"
                     android:textSize="18sp" />
@@ -260,99 +304,107 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/save"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/back_stroke_green"
-        android:onClick="onClick"
-        android:text="СОХРАНИТЬ" />
-
-    <Button
-        android:id="@+id/goToSpisok"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/back_stroke_green"
-        android:onClick="onClick"
-        android:text="ПЕРЕЙТИ К СОХРАНЕННЫМ" />
-
-    <Button
-        android:id="@+id/btnFindTicket"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/back_stroke_green"
-        android:onClick="onClick"
-        android:text="НАЙТИ БИЛЕТ" />
+    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ticketout"
+        android:id="@+id/LLticketButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_ll_blue"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="7dp"
+            android:background="@drawable/buttons_blue_a40"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="onClick"
+            android:text="СОХРАНИТЬ" />
+
+        <Button
+            android:id="@+id/goToSpisok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="7dp"
+            android:background="@drawable/buttons_blue_a40"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="onClick"
+            android:text="ПЕРЕЙТИ К СОХРАНЕННЫМ" />
+
+        <Button
+            android:id="@+id/btnFindTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:layout_marginHorizontal="7dp"
+            android:background="@drawable/buttons_blue_a40"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="onClick"
+            android:text="НАЙТИ БИЛЕТ" />
+</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLticketOut"
         android:layout_marginStart="7dp"
         android:layout_marginEnd="7dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/back_stroke_green"
-        android:orientation="vertical"
+        android:background="@drawable/back_ll_blue"
+        android:orientation="horizontal"
         android:visibility="visible">
-
+        <ImageView
+            android:id="@+id/image_view_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ticket_lightblue" />
         <TextView
-            android:id="@+id/strokaFrom"
+            android:id="@+id/txtTicketOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:lines="1"
-            android:maxLines="1"
-            android:minLines="1"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/strokaTo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:lines="1"
-            android:maxLines="1"
-            android:minLines="1"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/dateFrom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:lines="1"
-            android:maxLines="1"
-            android:minLines="1"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/gate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:lines="1"
-            android:maxLines="1"
-            android:minLines="1"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:lines="2"
-            android:maxLines="2"
-            android:minLines="2"
-            android:text="TextView" />
-
+            android:textColor="#DAF3FF"
+            android:layout_gravity="center_vertical"
+            android:maxLines="4" />
     </LinearLayout>
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+    <LinearLayout
+        android:id="@+id/LL_log_out"
+        android:background="@drawable/back_ll_blue"
+        android:layout_gravity="end|bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="15dp"
+        android:paddingHorizontal="5dp"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/txtLog_Out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="Выйти" />
+        <ImageView
+            android:layout_marginVertical="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/log_out" />
+    </LinearLayout>
+
+
 </LinearLayout>

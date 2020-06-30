@@ -70,7 +70,7 @@ public class TicketShowed {
         this.currency = currency;
     }
 
-    public TicketShowed(String id, String from, String to, String date, String gat, Double val, Double wantVal){
+    public TicketShowed(String id, String from, String to, String gat, String date, Double val, Double wantVal){
         setFromSTROKA(from);
         setToSTROKA(to);
         setFromDATE(date);
@@ -85,12 +85,12 @@ public class TicketShowed {
     public String toString() {
         StringBuilder result= new StringBuilder();
         return result
-                .append(this.getFromSTROKA()).append("\n")
-                .append(this.getToSTROKA()).append("\n")
-                .append(this.getFromDATE()).append("\n")
+                .append(this.getFromSTROKA().split(" ")[1]).append(" --> ")
+                .append(this.getToSTROKA().split(" ")[1]).append("\n")
+                .append(this.getFromDATE()).append("  in  ")
                 .append(this.getGate()).append("\n")
-                .append(this.getValue()).append("\n")
-                .append(this.getWantValue())
+                .append(Math.round(getValue())).append(" руб ( Желаемая: ")
+                .append(Math.round(this.getWantValue())+" )")
                 .toString();
     }
 }
