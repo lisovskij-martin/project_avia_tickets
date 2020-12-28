@@ -3,10 +3,10 @@ package com.example.testproject;
 import android.app.DatePickerDialog;
 import android.widget.DatePicker;
 import java.util.Calendar;
-import static com.example.testproject.MainActivity.dateinput;
-import static com.example.testproject.MainActivity.dateAndTime;
-import static com.example.testproject.MainActivity.dateFROM;
-import static com.example.testproject.MainActivity.DateIsSet;
+import static com.example.testproject.AviaMainActivity.dateinput;
+import static com.example.testproject.AviaMainActivity.dateAndTime;
+import static com.example.testproject.AviaMainActivity.dateFROM;
+import static com.example.testproject.AviaMainActivity.DateIsSet;
 
 public class WorkWithDate {
     public static void setInitialDateTime() {

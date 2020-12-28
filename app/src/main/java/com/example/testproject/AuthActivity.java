@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.testproject.models.User;
+import com.example.api.model.user.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -28,7 +28,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 public class AuthActivity extends AppCompatActivity {
 
     Button btnSignIn, btnRegister;
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
     FirebaseDatabase db;
     DatabaseReference users;
     RelativeLayout root;
@@ -62,7 +62,7 @@ public class AuthActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             Snackbar.make(root, "Сессия сохранена",Snackbar.LENGTH_SHORT).show();
-                            startActivity(new Intent(AuthActivity.this, MainActivity.class));
+                            startActivity(new Intent(AuthActivity.this, AviaMainActivity.class));
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -94,7 +94,7 @@ public class AuthActivity extends AppCompatActivity {
         dialog.setMessage("Введите данные для входа");
 
         LayoutInflater inflater = LayoutInflater.from(this);
-        View sign_in_window = inflater.inflate(R.layout.sigh_in_window, null);
+        View sign_in_window = inflater.inflate(R.layout.window_sigh_in, null);
         dialog.setView(sign_in_window);
 
         final MaterialEditText email=sign_in_window.findViewById(R.id.emailField);
@@ -131,7 +131,7 @@ public class AuthActivity extends AppCompatActivity {
 
 
 
-                                startActivity(new Intent(AuthActivity.this, MainActivity.class));
+                                startActivity(new Intent(AuthActivity.this, AviaMainActivity.class));
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -154,7 +154,7 @@ public class AuthActivity extends AppCompatActivity {
         dialog.setMessage("Введите все данные для регистрации");
 
         LayoutInflater inflater = LayoutInflater.from(this);
-        View register_window = inflater.inflate(R.layout.register_window, null);
+        View register_window = inflater.inflate(R.layout.window_register, null);
         dialog.setView(register_window);
 
         final MaterialEditText email=register_window.findViewById(R.id.emailField);

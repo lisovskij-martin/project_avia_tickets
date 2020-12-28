@@ -1,6 +1,6 @@
 package com.example.api.responseobjects;
 
-import com.example.api.model.Price;
+import com.example.api.model.aviaticket.Price;
 
 import java.util.ArrayList;
 import java.util.List;

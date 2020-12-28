@@ -1,6 +1,6 @@
 package com.example.api.service;
 
-import com.example.api.model.City;
+import com.example.api.model.city.City;
 
 import java.util.List;
 import retrofit2.Call;

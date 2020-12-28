@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/logo_background"
     android:id="@+id/root_element"
     android:layout_width="match_parent"
@@ -21,10 +20,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="320dp"
             android:layout_weight="1"
-            android:background="@drawable/buttons_blue_a40"
-            android:fontFamily="@font/josefin_sans_semibold"
-            android:text="Sign In"
-            android:textColor="#D9F2FF"
+            android:background="@drawable/small_blue_button"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Вход"
+            android:textColor="@android:color/white"
             android:textSize="18sp" />
 
         <Button
@@ -33,10 +32,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_weight="1"
-            android:background="@drawable/buttons_blue_a40"
-            android:fontFamily="@font/josefin_sans_semibold"
-            android:text="Register"
-            android:textColor="#D9F2FF"
+            android:background="@drawable/small_blue_button"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Регистрация"
+            android:textColor="@android:color/white"
             android:textSize="18sp" />
     </LinearLayout>
 

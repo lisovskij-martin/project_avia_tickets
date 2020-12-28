@@ -1,13 +1,7 @@
 package com.example.testproject;
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class TicketFounded {
     private static String fromIATA;
@@ -20,7 +14,7 @@ public class TicketFounded {
     private static Double value;
     private static Double wantvalue;
     private static Integer range=0;
-    static DBHelper dbHelper=MainActivity.dbHelper;
+    static DBHelper dbHelper= AviaMainActivity.dbHelper;
 
     public static String tostring() {
         StringBuilder result= new StringBuilder();
